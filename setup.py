@@ -17,14 +17,13 @@ from cx_Freeze import setup, Executable
 # chemins de recherche des modules
 # ajouter d'autres chemins (absolus) si necessaire: sys.path + ["chemin1", "chemin2"]
 path = sys.path
-  
 # options d'inclusion/exclusion des modules
 includes = []  # nommer les modules non trouves par cx_freeze
 excludes = []
 packages = []  # nommer les packages utilises
   
 # copier les fichiers non-Python et/ou repertoires et leur contenu:
-includefiles = ["E:\Lab\Denombt\icon.ico"]
+includefiles = ["E:\Lab\Denomb\icon.ico"]
   
 if sys.platform == "win32":
     pass
@@ -98,8 +97,8 @@ cible_1 = Executable(
 #############################################################################
 # creation du setup
 setup(
-    name = "Dénombrement_1.0.1",
-    version = "1.0.1",
+    name = "Dénombrement_1.2.1",
+    version = "1.2.1",
     description = "Calcul le nombre de ufc/g d'un ou groupe de microbe se trouvant dans un produit",
     author = "Ibrahima Gaye",
     options = {"build_exe":options},

@@ -225,7 +225,7 @@ def about():
     frame_about = Frame(info)
     font_about = tkfont.Font(family = "Times New Roman", size = 12, weight = 'normal' )
     Label(frame_about, text = "DENOMBREMENT", font = font_about, fg = "green").grid(row = 1, column = 2, pady = 5)
-    Label(frame_about, text = "Version :  1.2.0", font = font_about, fg = "black").grid(row = 2, column = 2, pady = 5)
+    Label(frame_about, text = "Version :  1.2.1", font = font_about, fg = "black").grid(row = 2, column = 2, pady = 5)
     Message(frame_about, text = "Ce logiciel de DENOMBREMENT a été dévelopé par Ibrahima Gaye", width = "250",font = font_about, justify = "center", fg = "black").grid(row = 3, column = 2, pady = 5)
 
     frame_about.pack()
