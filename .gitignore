@@ -1,0 +1,5 @@
+build/
+setup.py
+test.py
+version/
+__pycache__/
