@@ -343,7 +343,7 @@ if __name__ =='__main__':
     if conf.get()["instance"] == "False":
         conf.set("instance","True")
         root = Tk()
-        root.iconbitmap(dir+'\conda_icon.ico')
+        root.iconbitmap(dir+'\icon.ico')
         root.title("Dénombrement")
         root.maxsize(width = 1200, height =330)
         interface = box1(root)

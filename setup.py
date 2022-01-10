@@ -24,7 +24,7 @@ excludes = []
 packages = []  # nommer les packages utilises
   
 # copier les fichiers non-Python et/ou repertoires et leur contenu:
-includefiles = ["E:\Lab\projet python\denombrement\conda_icon.ico"]
+includefiles = ["E:\Lab\Denombt\icon.ico"]
   
 if sys.platform == "win32":
     pass
@@ -72,7 +72,7 @@ if sys.platform == "win32":
   
 icone = None
 if sys.platform == "win32":
-    icone = "conda_icon.ico"
+    icone = "icon.ico"
   
 cible_1 = Executable(
     script="denombrement.py",
@@ -81,7 +81,7 @@ cible_1 = Executable(
     #copyDependentFiles=True,
     #appendScriptToExe=True,
     #appendScriptToLibrary=False,  # <= ne pas generer de fichier zip
-    icon= "c:/Users/gaye1/OneDrive/Bureau/Code Python/tkinter/conda_icon.ico"
+    icon= "icon.ico"
     #icon_resources: [(1, "test.ico")]
     )
   
