@@ -300,7 +300,7 @@ class Config:
     import json
 
     def __init__(self):
-        self.path = os.environ.get("LOCALAPPDATA") + "\denombrement\conf.json"
+        self.path = os.environ.get("USERPROFILE ") + "AppData\Local\denombrement\conf.json"
         self.data = {}
         try:
             self.data = self.get()

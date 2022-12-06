@@ -80,7 +80,7 @@ cible_1 = Executable(
     #copyDependentFiles=True,
     #appendScriptToExe=True,
     #appendScriptToLibrary=False,  # <= ne pas generer de fichier zip
-    icon= "icon.ico"
+    icon= icone
     #icon_resources: [(1, "test.ico")]
     )
   
