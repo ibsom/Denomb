@@ -300,12 +300,12 @@ class Config:
     import json
 
     def __init__(self):
-        self.path = os.environ.get("USERPROFILE ") + "AppData\Local\denombrement\conf.json"
+        self.path = os.path.join(os.environ.get("USERPROFILE", os.path.expanduser("~")), "AppData", "Local", "denombrement", "conf.json")
         self.data = {}
         try:
             self.data = self.get()
         except FileNotFoundError:
-            os.makedirs(self.path)
+            os.makedirs(os.path.dirname(self.path), exist_ok=True)
             self.set("instance", "False", mode = "x")
 
     def set(self, key, value,  mode = 'w'):
