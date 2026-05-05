@@ -302,11 +302,14 @@ class Config:
     def __init__(self):
         self.path = os.path.join(os.environ.get("USERPROFILE", os.path.expanduser("~")), "AppData", "Local", "denombrement", "conf.json")
         self.data = {}
+        self.defaults = {"instance": "False", "ensemencement": "profondeur"}
         try:
             self.data = self.get()
         except FileNotFoundError:
             os.makedirs(os.path.dirname(self.path), exist_ok=True)
-            self.set("instance", "False", mode = "x")
+            self.data = self.defaults.copy()
+            with open(self.path, "x") as f:
+                f.write(json.dumps(self.data))
 
     def set(self, key, value,  mode = 'w'):
         """
@@ -329,7 +332,8 @@ class Config:
         return self.data
 
     def load(self, frame):
-        if self.get()["ensemencement"] == "profondeur":
+        ensemencement = self.get().get("ensemencement", "profondeur")
+        if ensemencement == "profondeur":
             frame.volume.set(1.0)
         else:
             frame.volume.set(0.1)
@@ -343,7 +347,9 @@ if __name__ =='__main__':
     if conf.get()["instance"] == "False":
         conf.set("instance","True")
         root = Tk()
-        root.iconbitmap(dir+'\icon.ico')
+        icon_path = os.path.join(dir, 'icon.ico')
+        if sys.platform == "win32" and os.path.exists(icon_path):
+            root.iconbitmap(icon_path)
         root.title("Dénombrement")
         root.maxsize(width = 1200, height =330)
         interface = box1(root)
