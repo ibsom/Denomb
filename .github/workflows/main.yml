@@ -1,0 +1,56 @@
+name: Build Windows Executable
+
+on:
+  push:
+    branches: ["claude/initialize-project-kmtKv", "main"]
+    paths:
+      - "denombrement.py"
+      - "icon.ico"
+      - ".github/workflows/build-windows.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
+
+      - name: Build executable
+        run: >
+          pyinstaller
+          --onefile
+          --windowed
+          --icon=icon.ico
+          --name=denombrement-v2.0-windows
+          --add-data "icon.ico;."
+          denombrement.py
+
+      - name: Copy exe to versions/
+        run: |
+          if (-not (Test-Path "versions")) { New-Item -ItemType Directory -Path "versions" }
+          Copy-Item "dist\denombrement-v2.0-windows.exe" "versions\denombrement-v2.0-windows.exe" -Force
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add versions/denombrement-v2.0-windows.exe
+          git diff --staged --quiet && echo "Rien à commiter" || (
+            git commit -m "build: Windows executable v2.0 [skip ci]"
+            git push
+          )
